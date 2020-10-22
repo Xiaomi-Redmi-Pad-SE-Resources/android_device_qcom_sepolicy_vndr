@@ -1,5 +1,5 @@
 # Board specific SELinux policy variable definitions
-SEPOLICY_PATH:= device/qcom/sepolicy_vndr/sm8550
+SEPOLICY_PATH:= device/qcom/sepolicy_vndr/sm6225
 QSSI_SEPOLICY_PATH:= device/qcom/sepolicy
 BOARD_SYSTEM_EXT_PREBUILT_DIR := device/qcom/sepolicy/generic
 BOARD_PRODUCT_PREBUILT_DIR := device/qcom/sepolicy/generic/product
@@ -24,24 +24,24 @@ PRODUCT_PRIVATE_SEPOLICY_DIRS := \
     $(QSSI_SEPOLICY_PATH)/generic/product/private
 
 ifeq (,$(filter sdm845 sdm710, $(TARGET_BOARD_PLATFORM)))
-    BOARD_SEPOLICY_DIRS := \
-       $(BOARD_SEPOLICY_DIRS) \
+    BOARD_VENDOR_SEPOLICY_DIRS := \
+       $(BOARD_VENDOR_SEPOLICY_DIRS) \
        $(SEPOLICY_PATH) \
        $(SEPOLICY_PATH)/generic/vendor/common \
        $(SEPOLICY_PATH)/generic/vendor/common/attribute \
        $(SEPOLICY_PATH)/qva/vendor/common
 
     ifeq ($(TARGET_SEPOLICY_DIR),)
-      BOARD_SEPOLICY_DIRS += $(SEPOLICY_PATH)/generic/vendor/$(TARGET_BOARD_PLATFORM)
-      BOARD_SEPOLICY_DIRS += $(SEPOLICY_PATH)/qva/vendor/$(TARGET_BOARD_PLATFORM)
+      BOARD_VENDOR_SEPOLICY_DIRS += $(SEPOLICY_PATH)/generic/vendor/$(TARGET_BOARD_PLATFORM)
+      BOARD_VENDOR_SEPOLICY_DIRS += $(SEPOLICY_PATH)/qva/vendor/$(TARGET_BOARD_PLATFORM)
     else
-      BOARD_SEPOLICY_DIRS += $(SEPOLICY_PATH)/generic/vendor/$(TARGET_SEPOLICY_DIR)
-      BOARD_SEPOLICY_DIRS += $(SEPOLICY_PATH)/qva/vendor/$(TARGET_SEPOLICY_DIR)
+      BOARD_VENDOR_SEPOLICY_DIRS += $(SEPOLICY_PATH)/generic/vendor/$(TARGET_SEPOLICY_DIR)
+      BOARD_VENDOR_SEPOLICY_DIRS += $(SEPOLICY_PATH)/qva/vendor/$(TARGET_SEPOLICY_DIR)
     endif
 
     ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
-    BOARD_SEPOLICY_DIRS += $(SEPOLICY_PATH)/generic/vendor/test
-    BOARD_SEPOLICY_DIRS += $(SEPOLICY_PATH)/qva/vendor/test
-    BOARD_SEPOLICY_DIRS += $(SEPOLICY_PATH)/qva/vendor/test/sysmonapp
+    BOARD_VENDOR_SEPOLICY_DIRS += $(SEPOLICY_PATH)/generic/vendor/test
+    BOARD_VENDOR_SEPOLICY_DIRS += $(SEPOLICY_PATH)/qva/vendor/test
+    BOARD_VENDOR_SEPOLICY_DIRS += $(SEPOLICY_PATH)/qva/vendor/test/sysmonapp
     endif
 endif
