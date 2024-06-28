@@ -34,3 +34,5 @@ allow vendor_qti_init_shell configfs:dir { create w_dir_perms };
 allow vendor_qti_init_shell configfs:file { create };
 allow vendor_qti_init_shell configfs:lnk_file { create };
 
+#for vendor_qti_init to proc permission
+allow vendor_qti_init_shell proc_page_cluster:file w_file_perms;

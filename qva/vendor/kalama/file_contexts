@@ -71,3 +71,9 @@
 
 # CEC nodes
 /dev/cec[0-9]*        u:object_r:vendor_cec_device:s0
+
+#proc
+/proc/sys/vm/page-cluster u:object_r:proc_page_cluster:s0
+
+#tee
+/dev/0:0:0:[0-5]  u:object_r:vendor_dev_tee:s0
